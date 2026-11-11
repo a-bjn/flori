@@ -1,0 +1,319 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #12071a;
+  color: #ffe9f0;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* ============================ scena ============================ */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  background: radial-gradient(120% 75% at 50% 62%, #5e1f4b 0%, #2c1034 46%, #12071a 100%);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(8, 2, 14, 0.55) 100%);
+  z-index: 1;
+}
+
+/* ============================ fundal =========================== */
+
+.ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bokeh {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  will-change: transform;
+}
+.bokeh-0 {
+  background: radial-gradient(circle, rgba(255, 140, 185, 0.3), rgba(255, 140, 185, 0) 70%);
+}
+.bokeh-1 {
+  background: radial-gradient(circle, rgba(255, 215, 150, 0.22), rgba(255, 215, 150, 0) 70%);
+}
+.bokeh-2 {
+  background: radial-gradient(circle, rgba(190, 150, 255, 0.24), rgba(190, 150, 255, 0) 70%);
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px 1px rgba(255, 220, 240, 0.8);
+  opacity: 0;
+}
+
+.fall {
+  position: absolute;
+  top: 0;
+  will-change: transform;
+}
+.fall-i {
+  display: block;
+  border-radius: 100% 0 100% 0;
+  opacity: 0.85;
+  will-change: transform;
+}
+.fall-0 {
+  background: linear-gradient(135deg, #ffc9da, #ff7aa2);
+}
+.fall-1 {
+  background: linear-gradient(135deg, #fff0f4, #ffb3c7);
+}
+.fall-2 {
+  background: linear-gradient(135deg, #ffb0c6, #e8456b);
+}
+
+/* ============================ conținut ========================= */
+
+.header {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  text-align: center;
+  padding: clamp(14px, 4.5dvh, 44px) 16px 0;
+}
+
+.kicker {
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(0.85rem, 3.6vw, 1.1rem);
+  letter-spacing: 0.18em;
+  color: #f6c9d9;
+  visibility: hidden;
+}
+
+.name {
+  font-family: var(--font-script), cursive;
+  font-weight: 600;
+  font-size: clamp(2.9rem, 16vw, 5rem);
+  line-height: 1.1;
+  margin-top: 2px;
+  color: #ffe6ee;
+  text-shadow:
+    0 0 18px rgba(255, 110, 165, 0.65),
+    0 0 42px rgba(255, 110, 165, 0.35);
+  visibility: hidden;
+  overflow-wrap: anywhere;
+}
+
+.bouquet-wrap {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 0;
+  min-height: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 560px;
+}
+
+.bouquet {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.flower {
+  cursor: pointer;
+}
+
+.stem,
+.twig {
+  stroke-linecap: butt;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 135%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 120, 175, 0.38) 0%, rgba(255, 120, 175, 0.12) 38%, rgba(255, 120, 175, 0) 68%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footer {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  min-height: clamp(116px, 21dvh, 190px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 9vw clamp(26px, 5dvh, 44px);
+}
+
+.messages {
+  display: grid;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+}
+
+.msg {
+  grid-area: 1 / 1;
+  align-self: center;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.1rem, 5vw, 1.45rem);
+  line-height: 1.32;
+  color: #ffeaf1;
+  text-shadow: 0 2px 14px rgba(20, 4, 28, 0.8);
+  visibility: hidden;
+  text-wrap: balance;
+}
+
+.tap-hint {
+  position: absolute;
+  bottom: max(10px, calc(env(safe-area-inset-bottom) + 6px));
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #f2bfd0;
+  visibility: hidden;
+}
+
+/* ============================ efecte =========================== */
+
+.fx {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.burst-petal {
+  position: absolute;
+  width: 12px;
+  height: 17px;
+  margin: -8px 0 0 -6px;
+  border-radius: 100% 0 100% 0;
+  will-change: transform;
+}
+
+/* ============================ intro ============================ */
+
+.intro {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 24px;
+}
+
+.bud-wrap {
+  position: relative;
+  display: block;
+  width: min(44vw, 180px);
+  aspect-ratio: 1;
+  margin-bottom: clamp(16px, 4dvh, 36px);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 170, 200, 0.7);
+  box-shadow: 0 0 22px rgba(255, 110, 165, 0.35);
+}
+
+.bud-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 14px rgba(255, 110, 165, 0.6));
+}
+
+.intro-title {
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 5.4vw, 1.6rem);
+  letter-spacing: 0.08em;
+  color: #f6c9d9;
+}
+
+.intro-accent {
+  font-family: var(--font-script), cursive;
+  font-weight: 600;
+  font-size: clamp(3rem, 17vw, 5.2rem);
+  line-height: 1.1;
+  color: #ffe6ee;
+  text-shadow:
+    0 0 18px rgba(255, 110, 165, 0.65),
+    0 0 42px rgba(255, 110, 165, 0.35);
+}
+
+.intro-hint {
+  margin-top: clamp(22px, 6dvh, 54px);
+  font-size: 0.8rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #f2bfd0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fall,
+  .bokeh {
+    display: none;
+  }
+}
